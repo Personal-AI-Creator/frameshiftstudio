@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frameshift Studio — AI Art &amp; Animation, James Ditmer</title>
+<meta name="description" content="Frameshift Studio: freelance AI art and animation for commercial VFX. Stills to finished video, one production.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Special+Elite&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #16110D;
+    --bg-2: #1D1610;
+    --tobacco: #B4813A;
+    --tobacco-dim: #8A6229;
+    --cream: #E4D6BE;
+    --rust: #A34430;
+    --ash: #6B5D4F;
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Spectral', serif;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ---- film grain + scratch overlay ---- */
+  .grain{
+    pointer-events:none;
+    position: fixed;
+    inset: -50px;
+    z-index: 40;
+    opacity: 0.16;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grainshift 0.5s steps(2) infinite;
+  }
+  @keyframes grainshift{
+    0%{ transform: translate(0,0); }
+    100%{ transform: translate(-2%,2%); }
+  }
+  .scratches{
+    pointer-events:none;
+    position: fixed; inset:0; z-index: 41;
+    opacity: 0;
+    background: linear-gradient(90deg, transparent 20%, rgba(228,214,190,0.5) 20.2%, transparent 20.4%);
+    animation: scratchflicker 7s linear infinite;
+  }
+  @keyframes scratchflicker{
+    0%, 96%{ opacity: 0; }
+    97%{ opacity: 0.5; background-position: 10% 0;}
+    97.5%{ opacity: 0; }
+    98.5%{ opacity: 0.35; background-position: 70% 0;}
+    99%{ opacity: 0; }
+  }
+
+  /* ---- sprocket rails ---- */
+  .rail{
+    position: fixed; top:0; bottom:0; width: 34px;
+    z-index: 30; pointer-events:none;
+    background:
+      repeating-linear-gradient(to bottom,
+        transparent 0, transparent 18px,
+        rgba(228,214,190,0.14) 18px, rgba(228,214,190,0.14) 19px,
+        transparent 19px, transparent 42px);
+    background-color: rgba(0,0,0,0.25);
+  }
+  .rail.left{ left:0; border-right: 1px solid rgba(228,214,190,0.08); }
+  .rail.right{ right:0; border-left: 1px solid rgba(228,214,190,0.08); }
+  .rail::before, .rail::after{ content:''; }
+  .sprocket-track{
+    position: absolute; inset:0;
+    background-image: radial-gradient(circle at 17px 20px, var(--bg-2) 5px, transparent 5.5px);
+    background-size: 34px 42px;
+    background-repeat: repeat-y;
+  }
+  @media (max-width: 700px){ .rail{ width: 16px; } .sprocket-track{ background-size: 16px 42px; background-position: 8px 20px;} }
+
+  main{ position:relative; z-index: 5; padding: 0 42px; }
+  @media (max-width: 700px){ main{ padding: 0 20px; } }
+
+  .eyebrow{
+    font-family: 'Special Elite', monospace;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    color: var(--tobacco);
+  }
+
+  /* ---- leader / hero ---- */
+  .leader{
+    position: fixed; inset:0; z-index: 100;
+    background: #0B0806;
+    display:flex; align-items:center; justify-content:center;
+    animation: leaderOut 0.4s ease 2.6s forwards;
+  }
+  .leader-count{
+    font-family:'Rye', serif;
+    font-size: clamp(4rem, 20vw, 11rem);
+    color: var(--tobacco);
+    text-shadow: 0 0 40px rgba(180,129,58,0.6);
+    animation: countTick 2.4s steps(4) forwards;
+  }
+  .leader-ring{
+    position:absolute; width: min(60vw,420px); height: min(60vw,420px);
+    border-radius:50%;
+    border: 2px solid var(--tobacco-dim);
+    opacity:0.5;
+  }
+  .leader-ring::before, .leader-ring::after{
+    content:''; position:absolute; background: var(--tobacco-dim);
+  }
+  .leader-ring::before{ top:50%; left:0; right:0; height:2px; transform: translateY(-50%); opacity:0.5;}
+  .leader-ring::after{ left:50%; top:0; bottom:0; width:2px; transform: translateX(-50%); opacity:0.5;}
+  @keyframes countTick{
+    0%{ content: '8'; }
+    25%{ transform: scale(1.05);}
+    50%{ transform: scale(1);}
+    100%{ opacity: 1; }
+  }
+  @keyframes leaderOut{ to{ opacity:0; visibility:hidden; } }
+
+  @media (prefers-reduced-motion: reduce){
+    .leader{ animation: leaderOut 0.01s linear 0.01s forwards; }
+    .grain, .scratches{ animation: none; opacity: 0.08; }
+  }
+
+  .hero{
+    min-height: 100svh;
+    display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
+    max-width: 900px; margin: 0 auto; padding-top: 60px;
+  }
+  .hero h1{
+    font-family:'Rye', serif; font-weight:400;
+    font-size: clamp(2.6rem, 8vw, 5.6rem);
+    line-height: 0.98;
+    margin: 0.3em 0 0.2em;
+    color: var(--cream);
+    text-shadow: 0 0 60px rgba(180,129,58,0.35);
+  }
+  .hero .tagline{
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    color: var(--cream);
+    max-width: 46ch;
+    border-left: 2px solid var(--tobacco);
+    padding-left: 1rem;
+    font-style: italic;
+    opacity: 0.92;
+  }
+  .hero .byline{
+    margin-top: 2rem;
+    font-family: 'Special Elite', monospace;
+    color: var(--ash);
+    font-size: 0.85rem;
+  }
+  .scroll-cue{
+    margin-top: 3rem;
+    font-family:'Special Elite', monospace;
+    font-size: 0.75rem;
+    color: var(--tobacco-dim);
+    letter-spacing: 0.14em;
+  }
+  .scroll-cue::after{ content:'▾'; display:block; margin-top:6px; animation: bob 1.8s ease-in-out infinite; }
+  @keyframes bob{ 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(6px);} }
+
+  section{ max-width: 980px; margin: 0 auto; padding: 5.5rem 0; border-top: 1px solid rgba(228,214,190,0.12); }
+  section:first-of-type{ border-top:none; }
+  h2{
+    font-family:'Rye', serif; font-weight:400;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: var(--tobacco);
+    margin: 0.2em 0 1em;
+  }
+
+  /* ---- reel embed ---- */
+  .reel-embed{
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    border: 2px solid var(--tobacco-dim);
+    background: #0B0806;
+    box-shadow: 0 0 60px rgba(180,129,58,0.15);
+  }
+  .reel-embed iframe{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    border:0;
+  }
+
+  /* ---- marquee / clients ---- */
+  .marquee-frame{
+    border: 1px solid var(--ash);
+    padding: 2rem 1.6rem;
+    background: linear-gradient(180deg, rgba(180,129,58,0.05), transparent);
+  }
+  .marquee-list{
+    display:flex; flex-wrap:wrap; gap: 0.6em 1.4em;
+    font-family:'Rye', serif; font-size: clamp(1.1rem, 3vw, 1.7rem);
+    color: var(--cream);
+  }
+  .marquee-list span{ position:relative; transition: color 0.2s; }
+  .marquee-list span:not(:last-child)::after{ content:'·'; position:absolute; right:-0.75em; color: var(--tobacco-dim); }
+  .marquee-list span:hover{ color: var(--tobacco); text-shadow: 0 0 16px rgba(180,129,58,0.6); }
+  .marquee-cap{ font-family:'Special Elite', monospace; font-size:0.75rem; color: var(--ash); margin-top:1.2rem; letter-spacing:0.08em;}
+
+  /* ---- reel / process ---- */
+  .reel{ position:relative; padding-left: 2.2rem; }
+  .reel-frame{
+    position:relative; padding: 1.6rem 0 1.6rem 1.6rem;
+    border-left: 2px dashed var(--ash);
+  }
+  .reel-frame:last-child{ border-left: 2px dashed transparent; }
+  .reel-frame::before{
+    content: attr(data-stage);
+    font-family:'Special Elite', monospace;
+    font-size: 0.72rem; color: var(--tobacco);
+    text-transform: uppercase; letter-spacing: 0.14em;
+    display:block; margin-bottom:0.4em;
+  }
+  .reel-frame h3{
+    font-family:'Spectral', serif; font-weight:600; font-size:1.3rem;
+    color: var(--cream); margin: 0 0 0.35em;
+  }
+  .reel-frame p{ margin:0; color: var(--cream); opacity:0.82; max-width:56ch; }
+
+  /* ---- services ---- */
+  .services-grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); gap: 1.6rem; }
+  .service-card{
+    border: 1px solid rgba(228,214,190,0.16);
+    padding: 1.4rem 1.3rem;
+    background: rgba(180,129,58,0.04);
+  }
+  .service-card h3{ font-size:1.05rem; color: var(--tobacco); margin:0 0 0.5em; font-family:'Spectral',serif; font-weight:600;}
+  .service-card p{ margin:0; font-size:0.95rem; opacity:0.85; }
+
+  /* ---- contact ---- */
+  .contact-card{
+    border: 2px solid var(--tobacco-dim);
+    padding: 2.4rem;
+    background: radial-gradient(circle at 20% 20%, rgba(180,129,58,0.08), transparent 60%);
+  }
+  .cta-row{ display:flex; flex-wrap:wrap; gap: 1rem; margin-top: 1.6rem; }
+  .btn{
+    display:inline-block; text-decoration:none;
+    font-family:'Special Elite', monospace;
+    font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.85em 1.5em;
+    border: 1px solid var(--tobacco);
+    color: var(--cream);
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn.primary{ background: var(--tobacco); color:#16110D; }
+  .btn:hover{ background: var(--rust); border-color: var(--rust); color: var(--cream); }
+
+  footer{
+    max-width: 980px; margin: 0 auto; padding: 2.5rem 0 4rem;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+    font-family:'Special Elite', monospace; font-size: 0.72rem; color: var(--ash);
+  }
+  a{ color: var(--tobacco); }
+  ::selection{ background: var(--tobacco); color:#16110D; }
+</style>
+</head>
+<body>
+
+  <div class="leader" aria-hidden="true">
+    <div class="leader-ring"></div>
+    <div class="leader-count">8</div>
+  </div>
+  <div class="grain"></div>
+  <div class="scratches"></div>
+  <div class="rail left"><div class="sprocket-track"></div></div>
+  <div class="rail right"><div class="sprocket-track"></div></div>
+
+  <main>
+
+    <section class="hero" style="border:none;">
+      <div class="eyebrow">Frameshift Studio — Reel No. 01</div>
+      <h1>Frameshift<br>Studio</h1>
+      <p class="tagline">AI-generated film, shot and finished like it was pulled off a reel — not a render.</p>
+      <p class="byline">James Ditmer · Freelance AI Artist &amp; Animator, Commercial VFX</p>
+      <div class="scroll-cue">keep rolling</div>
+    </section>
+
+    <section>
+      <div class="eyebrow">Now Screening</div>
+      <h2>The reel</h2>
+      <div class="reel-embed">
+        <iframe
+          src="https://www.youtube.com/embed/FOGbKD5X1II"
+          title="Frameshift Studio Reel"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+    </section>
+
+    <section>
+      <div class="eyebrow">Past Screenings</div>
+      <h2>Who's hired the studio</h2>
+      <div class="marquee-frame">
+        <div class="marquee-list">
+          <span>Jeep</span><span>State Farm</span><span>Jersey Mike's</span><span>Ferrero Rocher</span><span>ZOA</span><span>KFC</span>
+        </div>
+        <div class="marquee-cap">Commercial spots and social campaigns, delivered as freelance and contract work.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="eyebrow">How A Piece Gets Made</div>
+      <h2>One pipeline, start to finish</h2>
+      <div class="reel">
+        <div class="reel-frame" data-stage="Frame one">
+          <h3>Stills</h3>
+          <p>Concept and character work built out in MidJourney until the look is locked.</p>
+        </div>
+        <div class="reel-frame" data-stage="Frame two">
+          <h3>Motion</h3>
+          <p>Stills driven into video generation — camera moves, performance, and timing added.</p>
+        </div>
+        <div class="reel-frame" data-stage="Frame three">
+          <h3>Finish</h3>
+          <p>Color, grain, and cut assembled in DaVinci Resolve, with sound design built to match.</p>
+        </div>
+        <div class="reel-frame" data-stage="Release print">
+          <h3>Copy</h3>
+          <p>Platform-ready captions and social copy written alongside the final cut, not after it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="eyebrow">On The Slate</div>
+      <h2>Available for</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Freelance commercial spots</h3>
+          <p>Short-form AI-generated video for ads and campaigns, delivered finished and platform-ready.</p>
+        </div>
+        <div class="service-card">
+          <h3>Ongoing contract work</h3>
+          <p>Standing pipeline support for teams that need a steady flow of AI-generated visual content.</p>
+        </div>
+        <div class="service-card">
+          <h3>Character &amp; creature design</h3>
+          <p>Original characters and creatures built for animation, social series, or brand mascots.</p>
+        </div>
+        <div class="service-card">
+          <h3>Social video series</h3>
+          <p>Recurring character-driven video content built for regular posting, not one-offs.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="eyebrow">Get In Touch</div>
+      <h2>Book time on the reel</h2>
+      <div class="contact-card">
+        <p style="margin:0; max-width:52ch; opacity:0.85;">Open to freelance gigs and longer-term contracts. Send over the brief and what you're trying to make.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="mailto:james@frameshiftstudio.net">Email james@frameshiftstudio.net</a>
+          <a class="btn" href="https://x.com/AI_n_Other_Art" target="_blank" rel="noopener">Follow @AI_n_Other_Art</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>© 2026 Frameshift Studio — James Ditmer</span>
+    <span>frameshiftstudio.net</span>
+  </footer>
+
+</body>
+</html>
