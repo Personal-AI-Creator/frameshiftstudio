@@ -281,7 +281,7 @@
   <header>
     <div class="title">
       <h1>🧠 James's Claude Brain</h1>
-      <p>Skills · Automations · Memory · Projects — one living map</p>
+      <p>Skills · Automations · Memory · Projects — one living map · updated Aug 10, 2026</p>
     </div>
     <div id="legend"></div>
   </header>
@@ -326,63 +326,78 @@ const CATEGORY_LABELS = {
 const nodes = [
   { id: 'hub', kind: 'hub', category: 'hub', label: "James's Claude Brain",
     desc: "The center of the whole system — everything below radiates from here, the same way Jay E's CLAUDE.md acts as a router to departmental sub-files (content, community, product, personal, business). This graph *is* our claude_brain.md, visualized.",
-    status: 'Living doc' },
+    status: 'Living doc — updated 2026-08-10' },
 
   // Category hubs
-  { id: 'cat-skills', kind: 'category', category: 'skills', label: 'Skills', desc: 'Installed skills Claude can call on for you — the toolbox.', status: `${8} active` },
-  { id: 'cat-automations', kind: 'category', category: 'automations', label: 'Automations & Routines', desc: 'Scheduled tasks that run on their own, without you asking each time.', status: '1 available' },
-  { id: 'cat-memory', kind: 'category', category: 'memory', label: 'Memory', desc: 'What Claude remembers about you and how you like to work.', status: '4 items' },
-  { id: 'cat-projects', kind: 'category', category: 'projects', label: 'Active Projects', desc: "What's currently in motion, across Frameshift Studio and personal work.", status: '4 folders connected' },
-  { id: 'cat-ideas', kind: 'category', category: 'ideas', label: 'Ideas / Backlog', desc: 'Capabilities and open items we\'ve flagged but not resolved yet.', status: '4 open' },
+  { id: 'cat-skills', kind: 'category', category: 'skills', label: 'Skills', desc: 'Installed skills Claude can call on for you — the toolbox.', status: `${10} active` },
+  { id: 'cat-automations', kind: 'category', category: 'automations', label: 'Automations & Routines', desc: 'Scheduled tasks that run on their own, without you asking each time.', status: '4 running' },
+  { id: 'cat-memory', kind: 'category', category: 'memory', label: 'Memory', desc: 'What Claude remembers about you and how you like to work.', status: '5 items' },
+  { id: 'cat-projects', kind: 'category', category: 'projects', label: 'Active Projects', desc: "What's currently in motion, across Frameshift Studio, personal work, and Claude's own tooling.", status: '5 folders connected' },
+  { id: 'cat-ideas', kind: 'category', category: 'ideas', label: 'Ideas / Backlog', desc: 'Capabilities and open items we\'ve flagged but not resolved yet.', status: '7 open' },
 
   // Skills leaves
   { id: 'skill-frameshift', kind: 'leaf', category: 'skills', label: 'frameshift-director', desc: 'AI video/image production — personal X content, FrameShift Studio LLC branded work, and outside agency/client VFX jobs (element compositing, artifact fixes like trailing hair, AI backgrounds, commercial shot fixes).', status: 'Active' },
   { id: 'skill-pgc', kind: 'leaf', category: 'skills', label: 'pgc-style', desc: 'Applies James\'s "Practical Grime Cinema" — grindhouse, practical-effects — visual aesthetic to any image/video generation prompt.', status: 'Active' },
   { id: 'skill-morning', kind: 'leaf', category: 'skills', label: 'morning', desc: "Renders James's morning brief as a styled HTML artifact, or sets it up as a recurring weekday scheduled task.", status: 'Active' },
   { id: 'skill-docs', kind: 'leaf', category: 'skills', label: 'docx / xlsx / pptx / pdf', desc: 'Standard document creation & editing across Word, Excel, PowerPoint, and PDF.', status: 'Utility' },
-  { id: 'skill-dataviz', kind: 'leaf', category: 'skills', label: 'dataviz', desc: 'Design-system-consistent charts, dashboards, and data visualizations — this dashboard was built with it.', status: 'Utility' },
+  { id: 'skill-dataviz', kind: 'leaf', category: 'skills', label: 'dataviz', desc: 'Design-system-consistent charts, dashboards, and data visualizations — this dashboard, the X Growth tracker, and the AI Energy tracker all use it.', status: 'Utility' },
   { id: 'skill-creator', kind: 'leaf', category: 'skills', label: 'skill-creator', desc: 'Builds, edits, and optimizes new Claude skills from scratch.', status: 'Meta' },
   { id: 'skill-plugin', kind: 'leaf', category: 'skills', label: 'cowork-plugin', desc: 'Creates and customizes Cowork plugins — bundles of skills, connectors, and tools.', status: 'Meta' },
   { id: 'skill-setup', kind: 'leaf', category: 'skills', label: 'setup-cowork', desc: 'Guided onboarding for installing plugins, trying skills, and connecting new tools.', status: 'Meta' },
+  { id: 'skill-kie', kind: 'leaf', category: 'skills', label: 'kie-ai-router', desc: 'Cost-aware generation routing: client work defaults to Magnific, personal/Frameshift-branded work defaults to Higgsfield, kie.ai (pay-per-use) only steps in once the relevant default runs low on credit or James asks for it directly.', status: 'Active — confirmed saved' },
+  { id: 'skill-session', kind: 'leaf', category: 'skills', label: 'session-start', desc: 'Loads claude_brain.md and opens a fresh dated log file for a new conversation. Triggered explicitly with a phrase like "start my session" — doesn\'t fire automatically just because a chat opened.', status: 'Built 2026-08-09 — delivered for save' },
 
   // Automations leaves
-  { id: 'auto-morning', kind: 'leaf', category: 'automations', label: 'Morning Brief', desc: 'A weekday scheduled task that renders your morning brief automatically. Built, but not yet turned on — say the word and it\'ll run every weekday.', status: 'Available — not scheduled' },
-  { id: 'auto-add', kind: 'leaf', category: 'automations', label: '+ Add a routine', desc: 'Anything you do repeatedly — a weekly review, a content posting cadence, a client check-in — can become a scheduled task here.', status: 'Suggestion', muted: true },
+  { id: 'auto-morning', kind: 'leaf', category: 'automations', label: 'Morning Brief', desc: 'Weekdays, 7:30 AM ET. Pulls calendar/email/Notion and renders a calm daily brief as an artifact.', status: 'Scheduled' },
+  { id: 'auto-dashboard', kind: 'leaf', category: 'automations', label: 'Weekly Dashboard Refresh', desc: 'Sundays, 6 PM ET. Regenerates this dashboard from the latest claude_brain.md and pushes it to GitHub Pages — asks James for a fresh short-lived token each time rather than storing one long-term.', status: 'Scheduled' },
+  { id: 'auto-xgrowth', kind: 'leaf', category: 'automations', label: 'X Growth Tracker', desc: 'Daily, 9:10 PM ET. Logs followers/engagement from the X profile and analytics.x.com, regenerates the growth dashboard; refreshes top-posts/content-pillar tagging on Sundays.', status: 'Scheduled' },
+  { id: 'auto-energy', kind: 'leaf', category: 'automations', label: 'AI Energy Footprint', desc: 'Daily, 9:00 PM ET. Asks James for an end-of-day generation tally, cross-checks Higgsfield\'s transaction log, and updates the energy/water/CO2e living dashboard.', status: 'Scheduled' },
 
   // Memory leaves
-  { id: 'mem-brain', kind: 'leaf', category: 'memory', label: 'claude_brain.md', desc: 'The living reference doc this whole graph is drawn from — lives in your claude_brain folder, editable by both of us.', status: 'Saved to OneDrive' },
-  { id: 'mem-prefs', kind: 'leaf', category: 'memory', label: 'Working Preferences', desc: 'How you like to collaborate. So far: refresh the conversation log proactively, ideally before any compression.', status: 'In progress' },
-  { id: 'mem-inventory', kind: 'leaf', category: 'memory', label: 'Skills Inventory', desc: 'The running list of what Claude can do for you, kept current as skills change.', status: 'Current as of Aug 8' },
-  { id: 'mem-workspaces', kind: 'leaf', category: 'memory', label: 'Connected Workspaces', desc: 'Router table mapping studio_setup, general, the MJ→Magnific pipeline, and ai_tests to their own authoritative docs — one home per fact, not copies.', status: 'Added Aug 8' },
+  { id: 'mem-brain', kind: 'leaf', category: 'memory', label: 'claude_brain.md', desc: 'The living reference doc this whole graph is drawn from — lives in your claude_brain folder, editable by both of us. Starts with a "read this first" banner for any new session.', status: 'Saved to OneDrive' },
+  { id: 'mem-sessionlogs', kind: 'leaf', category: 'memory', label: 'session_logs/', desc: 'One detailed raw log file per conversation from 2026-08-09 onward, created by the session-start skill — replaces the old single ever-growing conversation_log.txt (kept as a historical archive through 2026-08-09).', status: 'Active pattern' },
+  { id: 'mem-prefs', kind: 'leaf', category: 'memory', label: 'Working Preferences', desc: 'How you like to collaborate. Currently: log updates proactively and often, scoped to each conversation\'s own session log rather than one giant file.', status: 'In progress' },
+  { id: 'mem-inventory', kind: 'leaf', category: 'memory', label: 'Skills Inventory', desc: 'The running list of what Claude can do for you, kept current as skills change.', status: 'Current as of Aug 10' },
+  { id: 'mem-workspaces', kind: 'leaf', category: 'memory', label: 'Connected Workspaces', desc: 'Router table mapping studio_setup, general, the MJ→Magnific pipeline, ai_tests, and claude_brain itself to their own authoritative docs — one home per fact, not copies.', status: 'Added Aug 8' },
 
   // Projects: sub-hubs
   { id: 'proj-clients', kind: 'subcat', category: 'projects', label: 'Frameshift Clients', desc: 'Paying client jobs — billable work only, lives in studio_setup/02-Clients.', status: '2 active' },
   { id: 'proj-personal', kind: 'subcat', category: 'projects', label: 'Personal Projects', desc: 'Non-studio-branded personal work, in studio_setup/05-Personal-James.', status: '3 active, 1 reference' },
   { id: 'proj-pipelines', kind: 'subcat', category: 'projects', label: 'Automated Pipelines', desc: 'Content mills that run largely on their own.', status: '2 active' },
   { id: 'proj-rd', kind: 'subcat', category: 'projects', label: 'R&D', desc: 'Tool and technique experiments outside client work.', status: '1 complete' },
+  { id: 'proj-ops', kind: 'subcat', category: 'projects', label: 'Tooling & Ops', desc: "Projects about Claude's own setup and cost structure, rather than a specific creative deliverable.", status: '4 active' },
 
   // Projects: clients
   { id: 'proj-velveeta', kind: 'leaf', category: 'projects', label: 'Velveeta — Cheese Wipe', desc: 'Heavily active client spot; iterating through v5 review cuts and retimed regenerations as of Aug 7.', status: 'In review' },
   { id: 'proj-oiglass', kind: 'leaf', category: 'projects', label: 'O-I Glass', desc: 'B-roll shot list built, test edit in progress; large raw Canon footage library still being processed.', status: 'In progress' },
 
   // Projects: personal
-  { id: 'proj-princess', kind: 'leaf', category: 'projects', label: 'Princess of Chene Street', desc: '16-shot PGC story piece. Stills locked, motion stage via CapCut underway — a v0003 finishing cut already exists. Open Qs: CapCut browser route, where VO/music slots in.', status: 'In finishing' },
+  { id: 'proj-princess', kind: 'leaf', category: 'projects', label: 'Princess of Chene Street', desc: '16-shot PGC story piece. Stills locked, a v0003 finishing cut exists. CapCut route ruled out Aug 10 (no public API, only fragile reverse-engineered draft-file writing) — finishing goes through Resolve instead. Still open: where VO/music slots in.', status: 'In finishing' },
   { id: 'proj-backlot', kind: 'leaf', category: 'projects', label: 'PGC Grindhouse Backlot', desc: 'Prompt-log in progress as of Aug 7 — pre-generation stage.', status: 'In progress' },
   { id: 'proj-longform', kind: 'leaf', category: 'projects', label: 'AI Long-Form Video Study', desc: 'Research into long-form AI video patterns, adapted into a PGC production framework. Includes draft Acting / Cinedance / Lira skill files.', status: 'Research' },
   { id: 'proj-colortest', kind: 'leaf', category: 'projects', label: 'PGC Resolve Color Test', desc: 'Completed grading test (fox footage) — reference case, not an open thread.', status: 'Reference', muted: true },
 
   // Projects: pipelines
   { id: 'proj-mjmagnific', kind: 'leaf', category: 'projects', label: 'MJ → Magnific Content Mill', desc: "The “creative direction for ai video:” pipeline — Midjourney still → Seedance video → post copy. Large library of already-posted shorts.", status: 'Active' },
-  { id: 'proj-scrapecreate', kind: 'leaf', category: 'projects', label: 'scrape_n_create', desc: "Newer, more hands-on video project — “spark-before-storm” piece in progress as of Aug 8.", status: 'Active' },
+  { id: 'proj-scrapecreate', kind: 'leaf', category: 'projects', label: 'scrape_n_create', desc: "17 rounds deep in the cryptid-creature mini-series — round 17 (\"The Hollow Garden\") completed Aug 8. A separate “spark-before-storm” piece also in progress outside the round-numbered series.", status: 'Active' },
 
   // Projects: R&D
   { id: 'proj-cartest', kind: 'leaf', category: 'projects', label: 'Car Color/Model Swap Test', desc: 'Completed case study on paint-color and car-swap generation techniques — reference for future similar jobs.', status: 'Complete', muted: true },
+
+  // Projects: Tooling & Ops
+  { id: 'proj-xgrowth', kind: 'leaf', category: 'projects', label: 'X Growth Tracker', desc: 'Started Aug 9 for @AI_n_Other_Art — visibility for client leads/brand deals without compromising PGC voice. Baseline: 605 followers, upside-down 849 following ratio flagged, 3% engagement. Found daily-challenge collabs meaningfully outperform solo posts.', status: 'Tracking daily' },
+  { id: 'proj-energy', kind: 'leaf', category: 'projects', label: 'AI Energy Footprint', desc: 'Started Aug 9 — a living, explicitly-caveated estimate (not metered data) of energy/water/CO2e from Claude, Higgsfield, Magnific and other tool use, updated daily.', status: 'Tracking daily' },
+  { id: 'proj-comfyui', kind: 'leaf', category: 'projects', label: 'ComfyUI Cost-Reduction Pipeline', desc: 'Started Aug 10 — replace per-generation Higgsfield/Magnific credit burn with open-weights models (Chroma1-HD, Qwen-Image, Wan 2.2 — Apache 2.0 only, client-safe), driven by Claude via the Chrome bridge, finished in Resolve. Design map complete; 4 open items block build.', status: 'Design complete, not built' },
+  { id: 'proj-ghpages', kind: 'leaf', category: 'projects', label: 'GitHub Pages Dashboard Hosting', desc: 'This dashboard, live at frameshiftstudio.net/claude_brain_dashboard.html — reachable from any device, not just the desktop Cowork sidebar. Refreshed weekly (see Automations).', status: 'Live' },
 
   // Ideas / Backlog leaves
   { id: 'idea-skills-pending', kind: 'leaf', category: 'ideas', label: '4 skills pending install', desc: 'calibrate, personalise, tweak, doctor-plus sent as .skill files on Aug 8 — confirm they saved, then move to Skills Inventory.', status: 'Pending' },
   { id: 'idea-budget', kind: 'leaf', category: 'ideas', label: 'Fill in budget ceilings', desc: 'Every per-tool monthly/per-job cost cap in the studio budget doc is still TBD — blocks cost-conscious job routing.', status: 'Open' },
   { id: 'idea-ae-trust', kind: 'leaf', category: 'ideas', label: 'Vet the After Effects MCP bridge', desc: 'Still test-copies-only in the studio trust log; needs comparative vetting before it could be promoted to Full trust like Resolve was.', status: 'Open' },
-  { id: 'idea-doctorplus-restore', kind: 'leaf', category: 'ideas', label: 'Restore full doctor-plus later', desc: 'When Claude Code CLI enters the picture, re-pull the original unadapted skill rather than just re-enabling the stripped part.', status: 'Future' }
+  { id: 'idea-doctorplus-restore', kind: 'leaf', category: 'ideas', label: 'Restore full doctor-plus later', desc: 'When Claude Code CLI enters the picture, re-pull the original unadapted skill rather than just re-enabling the stripped part.', status: 'Future' },
+  { id: 'idea-comfyui-skill', kind: 'leaf', category: 'ideas', label: 'Build the ComfyUI driver skill', desc: 'The integration map (Aug 10) is just the design — the actual comfyui-router skill (patch graph → queue via Chrome bridge → poll → retrieve → hand to Resolve) still needs to be written.', status: 'Open' },
+  { id: 'idea-kie-update', kind: 'leaf', category: 'ideas', label: 'Update kie-ai-router for ComfyUI', desc: 'Once ComfyUI is proven, it should become the default for anything not deadline-critical, with Magnific/Higgsfield/kie.ai as the overflow — inverting the current routing policy.', status: 'Open' },
+  { id: 'idea-princess-vo', kind: 'leaf', category: 'ideas', label: 'Princess of Chene Street: VO/music', desc: 'CapCut route resolved as a dead end (Aug 10) — finishing goes through Resolve. Still open: where voiceover and music slot into the pipeline.', status: 'Open' }
 ];
 
 const links = [
@@ -400,11 +415,16 @@ const links = [
   { source: 'cat-skills', target: 'skill-creator' },
   { source: 'cat-skills', target: 'skill-plugin' },
   { source: 'cat-skills', target: 'skill-setup' },
+  { source: 'cat-skills', target: 'skill-kie' },
+  { source: 'cat-skills', target: 'skill-session' },
 
   { source: 'cat-automations', target: 'auto-morning' },
-  { source: 'cat-automations', target: 'auto-add' },
+  { source: 'cat-automations', target: 'auto-dashboard' },
+  { source: 'cat-automations', target: 'auto-xgrowth' },
+  { source: 'cat-automations', target: 'auto-energy' },
 
   { source: 'cat-memory', target: 'mem-brain' },
+  { source: 'cat-memory', target: 'mem-sessionlogs' },
   { source: 'cat-memory', target: 'mem-prefs' },
   { source: 'cat-memory', target: 'mem-inventory' },
   { source: 'cat-memory', target: 'mem-workspaces' },
@@ -413,6 +433,7 @@ const links = [
   { source: 'cat-projects', target: 'proj-personal' },
   { source: 'cat-projects', target: 'proj-pipelines' },
   { source: 'cat-projects', target: 'proj-rd' },
+  { source: 'cat-projects', target: 'proj-ops' },
 
   { source: 'proj-clients', target: 'proj-velveeta' },
   { source: 'proj-clients', target: 'proj-oiglass' },
@@ -427,10 +448,18 @@ const links = [
 
   { source: 'proj-rd', target: 'proj-cartest' },
 
+  { source: 'proj-ops', target: 'proj-xgrowth' },
+  { source: 'proj-ops', target: 'proj-energy' },
+  { source: 'proj-ops', target: 'proj-comfyui' },
+  { source: 'proj-ops', target: 'proj-ghpages' },
+
   { source: 'cat-ideas', target: 'idea-skills-pending' },
   { source: 'cat-ideas', target: 'idea-budget' },
   { source: 'cat-ideas', target: 'idea-ae-trust' },
-  { source: 'cat-ideas', target: 'idea-doctorplus-restore' }
+  { source: 'cat-ideas', target: 'idea-doctorplus-restore' },
+  { source: 'cat-ideas', target: 'idea-comfyui-skill' },
+  { source: 'cat-ideas', target: 'idea-kie-update' },
+  { source: 'cat-ideas', target: 'idea-princess-vo' }
 ];
 
 // ---- Layout constants ----
