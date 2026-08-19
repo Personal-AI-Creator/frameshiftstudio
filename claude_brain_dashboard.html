@@ -281,7 +281,7 @@
   <header>
     <div class="title">
       <h1>🧠 James's Claude Brain</h1>
-      <p>Skills · Automations · Memory · Projects — one living map · updated Aug 10, 2026</p>
+      <p>Skills · Automations · Memory · Projects — one living map · updated Aug 19, 2026</p>
     </div>
     <div id="legend"></div>
   </header>
@@ -323,57 +323,63 @@ const CATEGORY_LABELS = {
 };
 
 // ---- Data: mirrors claude_brain.md ----
+// ---- Data: mirrors claude_brain.md ----
 const nodes = [
   { id: 'hub', kind: 'hub', category: 'hub', label: "James's Claude Brain",
     desc: "The center of the whole system — everything below radiates from here, the same way Jay E's CLAUDE.md acts as a router to departmental sub-files (content, community, product, personal, business). This graph *is* our claude_brain.md, visualized.",
-    status: 'Living doc — updated 2026-08-10' },
+    status: 'Living doc — updated 2026-08-19' },
 
   // Category hubs
-  { id: 'cat-skills', kind: 'category', category: 'skills', label: 'Skills', desc: 'Installed skills Claude can call on for you — the toolbox.', status: `${10} active` },
-  { id: 'cat-automations', kind: 'category', category: 'automations', label: 'Automations & Routines', desc: 'Scheduled tasks that run on their own, without you asking each time.', status: '4 running' },
+  { id: 'cat-skills', kind: 'category', category: 'skills', label: 'Skills', desc: 'Installed skills Claude can call on for you — the toolbox.', status: `${11} active` },
+  { id: 'cat-automations', kind: 'category', category: 'automations', label: 'Automations & Routines', desc: 'Scheduled tasks that run on their own, without you asking each time.', status: '4 running, 1 broken' },
   { id: 'cat-memory', kind: 'category', category: 'memory', label: 'Memory', desc: 'What Claude remembers about you and how you like to work.', status: '5 items' },
-  { id: 'cat-projects', kind: 'category', category: 'projects', label: 'Active Projects', desc: "What's currently in motion, across Frameshift Studio, personal work, and Claude's own tooling.", status: '5 folders connected' },
-  { id: 'cat-ideas', kind: 'category', category: 'ideas', label: 'Ideas / Backlog', desc: 'Capabilities and open items we\'ve flagged but not resolved yet.', status: '7 open' },
+  { id: 'cat-projects', kind: 'category', category: 'projects', label: 'Active Projects', desc: "What's currently in motion, across Frameshift Studio, personal work, motion graphics, and Claude's own tooling.", status: '6 areas' },
+  { id: 'cat-ideas', kind: 'category', category: 'ideas', label: 'Ideas / Backlog', desc: 'Capabilities and open items we\'ve flagged but not resolved yet.', status: '11 open' },
 
   // Skills leaves
   { id: 'skill-frameshift', kind: 'leaf', category: 'skills', label: 'frameshift-director', desc: 'AI video/image production — personal X content, FrameShift Studio LLC branded work, and outside agency/client VFX jobs (element compositing, artifact fixes like trailing hair, AI backgrounds, commercial shot fixes).', status: 'Active' },
   { id: 'skill-pgc', kind: 'leaf', category: 'skills', label: 'pgc-style', desc: 'Applies James\'s "Practical Grime Cinema" — grindhouse, practical-effects — visual aesthetic to any image/video generation prompt.', status: 'Active' },
   { id: 'skill-morning', kind: 'leaf', category: 'skills', label: 'morning', desc: "Renders James's morning brief as a styled HTML artifact, or sets it up as a recurring weekday scheduled task.", status: 'Active' },
   { id: 'skill-docs', kind: 'leaf', category: 'skills', label: 'docx / xlsx / pptx / pdf', desc: 'Standard document creation & editing across Word, Excel, PowerPoint, and PDF.', status: 'Utility' },
-  { id: 'skill-dataviz', kind: 'leaf', category: 'skills', label: 'dataviz', desc: 'Design-system-consistent charts, dashboards, and data visualizations — this dashboard, the X Growth tracker, and the AI Energy tracker all use it.', status: 'Utility' },
+  { id: 'skill-dataviz', kind: 'leaf', category: 'skills', label: 'dataviz', desc: 'Design-system-consistent charts, dashboards, and data visualizations — this dashboard, X Growth, and AI Energy all use it.', status: 'Utility' },
   { id: 'skill-creator', kind: 'leaf', category: 'skills', label: 'skill-creator', desc: 'Builds, edits, and optimizes new Claude skills from scratch.', status: 'Meta' },
   { id: 'skill-plugin', kind: 'leaf', category: 'skills', label: 'cowork-plugin', desc: 'Creates and customizes Cowork plugins — bundles of skills, connectors, and tools.', status: 'Meta' },
   { id: 'skill-setup', kind: 'leaf', category: 'skills', label: 'setup-cowork', desc: 'Guided onboarding for installing plugins, trying skills, and connecting new tools.', status: 'Meta' },
-  { id: 'skill-kie', kind: 'leaf', category: 'skills', label: 'kie-ai-router', desc: 'Cost-aware generation routing: client work defaults to Magnific, personal/Frameshift-branded work defaults to Higgsfield, kie.ai (pay-per-use) only steps in once the relevant default runs low on credit or James asks for it directly.', status: 'Active — confirmed saved' },
+  { id: 'skill-kie', kind: 'leaf', category: 'skills', label: 'kie-ai-router', desc: 'Cost-aware generation routing: client work defaults to Magnific, personal/Frameshift-branded work defaults to Higgsfield, kie.ai (pay-per-use) only steps in once the relevant default runs low on credit or James asks for it directly. Due for an update once ComfyUI is fully proven — see Ideas/Backlog.', status: 'Active — confirmed saved' },
   { id: 'skill-session', kind: 'leaf', category: 'skills', label: 'session-start', desc: 'Loads claude_brain.md and opens a fresh dated log file for a new conversation. Triggered explicitly with a phrase like "start my session" — doesn\'t fire automatically just because a chat opened.', status: 'Built 2026-08-09 — delivered for save' },
+  { id: 'skill-ograf', kind: 'leaf', category: 'skills', label: 'ograf-resolve', desc: 'Builds motion graphics as review-ready HTML, then converts to EBU OGraf packages that import into DaVinci Resolve 21. Installed 2026-08-10 after a ShootFirst workshop; companion cheat sheet covers timing/easing/typesetting principles applied by default on every job.', status: 'Active — 4 projects shipped' },
 
   // Automations leaves
   { id: 'auto-morning', kind: 'leaf', category: 'automations', label: 'Morning Brief', desc: 'Weekdays, 7:30 AM ET. Pulls calendar/email/Notion and renders a calm daily brief as an artifact.', status: 'Scheduled' },
   { id: 'auto-dashboard', kind: 'leaf', category: 'automations', label: 'Weekly Dashboard Refresh', desc: 'Sundays, 6 PM ET. Regenerates this dashboard from the latest claude_brain.md and pushes it to GitHub Pages — asks James for a fresh short-lived token each time rather than storing one long-term.', status: 'Scheduled' },
-  { id: 'auto-xgrowth', kind: 'leaf', category: 'automations', label: 'X Growth Tracker', desc: 'Daily, 9:10 PM ET. Logs followers/engagement from the X profile and analytics.x.com, regenerates the growth dashboard; refreshes top-posts/content-pillar tagging on Sundays.', status: 'Scheduled' },
-  { id: 'auto-energy', kind: 'leaf', category: 'automations', label: 'AI Energy Footprint', desc: 'Daily, 9:00 PM ET. Asks James for an end-of-day generation tally, cross-checks Higgsfield\'s transaction log, and updates the energy/water/CO2e living dashboard.', status: 'Scheduled' },
+  { id: 'auto-xgrowth', kind: 'leaf', category: 'automations', label: 'X Growth Tracker', desc: 'Daily, 9:10 PM ET — but the scheduled firing has NOT actually been writing data since 2026-08-10. Aug 10-13, 15, 17-18 are confirmed gaps; James has had to manually re-run the pull four separate times (Aug 14, 16, 19). Leading theory: a silent approval-gate block during unattended runs, unconfirmed. Needs a structural fix, not another manual patch.', status: 'Broken — manual patches only', muted: false },
+  { id: 'auto-energy', kind: 'leaf', category: 'automations', label: 'AI Energy Footprint', desc: 'Daily, 9:00 PM ET. Asks James for an end-of-day generation tally, cross-checks Higgsfield\'s transaction log, and updates the energy/water/CO2e living dashboard. Schema expanded (v1.3) to also log named multi-day sessions and transcript-derived estimates, not just calendar days.', status: 'Scheduled' },
 
   // Memory leaves
   { id: 'mem-brain', kind: 'leaf', category: 'memory', label: 'claude_brain.md', desc: 'The living reference doc this whole graph is drawn from — lives in your claude_brain folder, editable by both of us. Starts with a "read this first" banner for any new session.', status: 'Saved to OneDrive' },
-  { id: 'mem-sessionlogs', kind: 'leaf', category: 'memory', label: 'session_logs/', desc: 'One detailed raw log file per conversation from 2026-08-09 onward, created by the session-start skill — replaces the old single ever-growing conversation_log.txt (kept as a historical archive through 2026-08-09).', status: 'Active pattern' },
+  { id: 'mem-sessionlogs', kind: 'leaf', category: 'memory', label: 'session_logs/', desc: 'One detailed raw log file per conversation from 2026-08-09 onward, created by the session-start skill — replaces the old single ever-growing conversation_log.txt (kept as a historical archive through 2026-08-09). Now includes several deep-research transcripts alongside the standard session logs.', status: 'Active pattern' },
   { id: 'mem-prefs', kind: 'leaf', category: 'memory', label: 'Working Preferences', desc: 'How you like to collaborate. Currently: log updates proactively and often, scoped to each conversation\'s own session log rather than one giant file.', status: 'In progress' },
-  { id: 'mem-inventory', kind: 'leaf', category: 'memory', label: 'Skills Inventory', desc: 'The running list of what Claude can do for you, kept current as skills change.', status: 'Current as of Aug 10' },
+  { id: 'mem-inventory', kind: 'leaf', category: 'memory', label: 'Skills Inventory', desc: 'The running list of what Claude can do for you, kept current as skills change.', status: 'Current as of Aug 19' },
   { id: 'mem-workspaces', kind: 'leaf', category: 'memory', label: 'Connected Workspaces', desc: 'Router table mapping studio_setup, general, the MJ→Magnific pipeline, ai_tests, and claude_brain itself to their own authoritative docs — one home per fact, not copies.', status: 'Added Aug 8' },
 
   // Projects: sub-hubs
   { id: 'proj-clients', kind: 'subcat', category: 'projects', label: 'Frameshift Clients', desc: 'Paying client jobs — billable work only, lives in studio_setup/02-Clients.', status: '2 active' },
-  { id: 'proj-personal', kind: 'subcat', category: 'projects', label: 'Personal Projects', desc: 'Non-studio-branded personal work, in studio_setup/05-Personal-James.', status: '3 active, 1 reference' },
+  { id: 'proj-personal', kind: 'subcat', category: 'projects', label: 'Personal Projects', desc: 'Non-studio-branded personal work, in studio_setup/05-Personal-James and claude_brain/comfyui-generations.', status: '6 active, 1 reference' },
   { id: 'proj-pipelines', kind: 'subcat', category: 'projects', label: 'Automated Pipelines', desc: 'Content mills that run largely on their own.', status: '2 active' },
   { id: 'proj-rd', kind: 'subcat', category: 'projects', label: 'R&D', desc: 'Tool and technique experiments outside client work.', status: '1 complete' },
-  { id: 'proj-ops', kind: 'subcat', category: 'projects', label: 'Tooling & Ops', desc: "Projects about Claude's own setup and cost structure, rather than a specific creative deliverable.", status: '4 active' },
+  { id: 'proj-ops', kind: 'subcat', category: 'projects', label: 'Tooling & Ops', desc: "Projects about Claude's own setup and cost structure, rather than a specific creative deliverable.", status: '4 active, 1 broken' },
+  { id: 'proj-motiongfx', kind: 'subcat', category: 'projects', label: 'Motion Graphics', desc: "ograf-resolve deliverables — built for both Frameshift branding and personal reel work.", status: '4 shipped' },
 
   // Projects: clients
   { id: 'proj-velveeta', kind: 'leaf', category: 'projects', label: 'Velveeta — Cheese Wipe', desc: 'Heavily active client spot; iterating through v5 review cuts and retimed regenerations as of Aug 7.', status: 'In review' },
   { id: 'proj-oiglass', kind: 'leaf', category: 'projects', label: 'O-I Glass', desc: 'B-roll shot list built, test edit in progress; large raw Canon footage library still being processed.', status: 'In progress' },
 
   // Projects: personal
-  { id: 'proj-princess', kind: 'leaf', category: 'projects', label: 'Princess of Chene Street', desc: '16-shot PGC story piece. Stills locked, a v0003 finishing cut exists. CapCut route ruled out Aug 10 (no public API, only fragile reverse-engineered draft-file writing) — finishing goes through Resolve instead. Still open: where VO/music slots in.', status: 'In finishing' },
+  { id: 'proj-princess', kind: 'leaf', category: 'projects', label: 'Princess of Chene Street', desc: '16-shot PGC story piece. Stills locked, a v0003 finishing cut exists. CapCut route ruled out Aug 10 (no public API) — finishing goes through Resolve instead, now with a PGC PowerGrade `.drx` ready to apply. Still open: where VO/music slots in.', status: 'In finishing' },
   { id: 'proj-backlot', kind: 'leaf', category: 'projects', label: 'PGC Grindhouse Backlot', desc: 'Prompt-log in progress as of Aug 7 — pre-generation stage.', status: 'In progress' },
+  { id: 'proj-atl', kind: 'leaf', category: 'projects', label: 'Abandoned Takes Log', desc: 'New recurring X series established Aug 14 — anthology format, each volume a different forgotten prop/puppet from the fictional backlot. Locked caption template, no hashtags, "PGC"/"lore" stay internal-only (public copy says "Log"). Vol. 1 ("The Understudy") posted; a train-miniature pipeline test also ran Aug 15.', status: 'Active — Vol. 1 posted' },
+  { id: 'proj-dawnridge', kind: 'leaf', category: 'projects', label: 'Dawn Ridge Hikers', desc: 'Standalone morning post, Aug 17 — first finished (non-test) deliverable through the Comfy Cloud/WAN pipeline instead of Magnific/Higgsfield. Midjourney still → Wan 2.2 14B I2V (2 segments) → ffmpeg stitch + ambient SFX. Delivered; caption still pending James\'s pick.', status: 'Delivered — caption pending' },
+  { id: 'proj-goblin', kind: 'leaf', category: 'projects', label: 'Gossip Goblin Competition', desc: 'Showrunner Studio filmmaking contest ("Hidden Desires" theme, Ripper Doc frame story) — $15K top prize, entries close Dec 15 2026. Brainstorm/plan doc written Aug 15; a Showrunner Studio subscription is required and James still needs to sign up for it himself. PGC style has a built-in excuse to run (rules explicitly allow alternate styles for implanted-memory sequences).', status: 'Brainstorm done — not started building' },
   { id: 'proj-longform', kind: 'leaf', category: 'projects', label: 'AI Long-Form Video Study', desc: 'Research into long-form AI video patterns, adapted into a PGC production framework. Includes draft Acting / Cinedance / Lira skill files.', status: 'Research' },
   { id: 'proj-colortest', kind: 'leaf', category: 'projects', label: 'PGC Resolve Color Test', desc: 'Completed grading test (fox footage) — reference case, not an open thread.', status: 'Reference', muted: true },
 
@@ -385,19 +391,29 @@ const nodes = [
   { id: 'proj-cartest', kind: 'leaf', category: 'projects', label: 'Car Color/Model Swap Test', desc: 'Completed case study on paint-color and car-swap generation techniques — reference for future similar jobs.', status: 'Complete', muted: true },
 
   // Projects: Tooling & Ops
-  { id: 'proj-xgrowth', kind: 'leaf', category: 'projects', label: 'X Growth Tracker', desc: 'Started Aug 9 for @AI_n_Other_Art — visibility for client leads/brand deals without compromising PGC voice. Baseline: 605 followers, upside-down 849 following ratio flagged, 3% engagement. Found daily-challenge collabs meaningfully outperform solo posts.', status: 'Tracking daily' },
-  { id: 'proj-energy', kind: 'leaf', category: 'projects', label: 'AI Energy Footprint', desc: 'Started Aug 9 — a living, explicitly-caveated estimate (not metered data) of energy/water/CO2e from Claude, Higgsfield, Magnific and other tool use, updated daily.', status: 'Tracking daily' },
-  { id: 'proj-comfyui', kind: 'leaf', category: 'projects', label: 'ComfyUI Cost-Reduction Pipeline', desc: 'Started Aug 10 — replace per-generation Higgsfield/Magnific credit burn with open-weights models (Chroma1-HD, Qwen-Image, Wan 2.2 — Apache 2.0 only, client-safe), driven by Claude via the Chrome bridge, finished in Resolve. Design map complete; 4 open items block build.', status: 'Design complete, not built' },
+  { id: 'proj-xgrowth', kind: 'leaf', category: 'projects', label: 'X Growth Tracker', desc: 'Tracking @AI_n_Other_Art since Aug 9 — now 625 followers (+20 since baseline), 3.9% engagement. Real finding holding up: daily-challenge/collab posts massively outperform solo posts (one hit 3.8K impressions, 2x any other post). But the daily scheduled pull itself is broken — see Automations.', status: 'Tracking — automation broken' },
+  { id: 'proj-energy', kind: 'leaf', category: 'projects', label: 'AI Energy Footprint', desc: 'Living, explicitly-caveated estimate (not metered data) of energy/water/CO2e from Claude, Higgsfield, Magnific, ComfyUI and other tool use. Lifetime total as of Aug 19: 21.21 kWh / 7.83 kg CO2e / 38.18 L. Schema now covers both calendar days and named multi-day sessions.', status: 'Tracking daily' },
+  { id: 'proj-comfyui', kind: 'leaf', category: 'projects', label: 'ComfyUI Cost-Reduction Pipeline', desc: 'All 5 original build blockers closed as of Aug 14: Resolve Studio confirmed, GPU machine confirmed, PGC PowerGrade exported as .drx, Comfy Cloud verified as "Founder\'s Edition" ($20/mo, not the assumed $35 Creator tier), $50/mo Partner API spend ceiling set. Proven working end-to-end twice since (Abandoned Takes Log train test Aug 15, Dawn Ridge Hikers full deliverable Aug 17) via driving Comfy Cloud through window.app\'s own client methods in the browser — never a raw fetch. Local-build plan (v002) still has two unresolved technical conflicts and one open hardware question — see Ideas/Backlog.', status: 'Proven in production, not yet packaged as a skill' },
   { id: 'proj-ghpages', kind: 'leaf', category: 'projects', label: 'GitHub Pages Dashboard Hosting', desc: 'This dashboard, live at frameshiftstudio.net/claude_brain_dashboard.html — reachable from any device, not just the desktop Cowork sidebar. Refreshed weekly (see Automations).', status: 'Live' },
+
+  // Projects: Motion Graphics
+  { id: 'proj-oistudios', kind: 'leaf', category: 'projects', label: 'O-I Studios Logo Reveal', desc: 'ograf-resolve motion graphic, built Aug 11.', status: 'Shipped' },
+  { id: 'proj-kowalski', kind: 'leaf', category: 'projects', label: 'Kowalski Bros Auto Logo Reveal', desc: 'ograf-resolve motion graphic, built Aug 11.', status: 'Shipped' },
+  { id: 'proj-copperskillet', kind: 'leaf', category: 'projects', label: 'Copper Skillet Logo Reveal', desc: 'ograf-resolve motion graphic, built Aug 11.', status: 'Shipped' },
+  { id: 'proj-statcards', kind: 'leaf', category: 'projects', label: 'Stat / Social Cards', desc: 'Five OGraf packages built Aug 12: dashboard-widgets, bar-chart, kpi-number, milestone-counter, branded-post. Portfolio reel updated through these as of Aug 13.', status: 'Shipped' },
 
   // Ideas / Backlog leaves
   { id: 'idea-skills-pending', kind: 'leaf', category: 'ideas', label: '4 skills pending install', desc: 'calibrate, personalise, tweak, doctor-plus sent as .skill files on Aug 8 — confirm they saved, then move to Skills Inventory.', status: 'Pending' },
   { id: 'idea-budget', kind: 'leaf', category: 'ideas', label: 'Fill in budget ceilings', desc: 'Every per-tool monthly/per-job cost cap in the studio budget doc is still TBD — blocks cost-conscious job routing.', status: 'Open' },
   { id: 'idea-ae-trust', kind: 'leaf', category: 'ideas', label: 'Vet the After Effects MCP bridge', desc: 'Still test-copies-only in the studio trust log; needs comparative vetting before it could be promoted to Full trust like Resolve was.', status: 'Open' },
   { id: 'idea-doctorplus-restore', kind: 'leaf', category: 'ideas', label: 'Restore full doctor-plus later', desc: 'When Claude Code CLI enters the picture, re-pull the original unadapted skill rather than just re-enabling the stripped part.', status: 'Future' },
-  { id: 'idea-comfyui-skill', kind: 'leaf', category: 'ideas', label: 'Build the ComfyUI driver skill', desc: 'The integration map (Aug 10) is just the design — the actual comfyui-router skill (patch graph → queue via Chrome bridge → poll → retrieve → hand to Resolve) still needs to be written.', status: 'Open' },
-  { id: 'idea-kie-update', kind: 'leaf', category: 'ideas', label: 'Update kie-ai-router for ComfyUI', desc: 'Once ComfyUI is proven, it should become the default for anything not deadline-critical, with Magnific/Higgsfield/kie.ai as the overflow — inverting the current routing policy.', status: 'Open' },
-  { id: 'idea-princess-vo', kind: 'leaf', category: 'ideas', label: 'Princess of Chene Street: VO/music', desc: 'CapCut route resolved as a dead end (Aug 10) — finishing goes through Resolve. Still open: where voiceover and music slot into the pipeline.', status: 'Open' }
+  { id: 'idea-comfyui-skill', kind: 'leaf', category: 'ideas', label: 'Package ComfyUI driving as a real skill', desc: 'The window.app-client-methods approach (queue, poll, upload) is now proven twice in production, plus a novel cross-tab postMessage/transferable-ArrayBuffer trick for moving binary assets between authenticated tabs (Aug 17) — none of it is written up as a reusable skill yet. Should supersede or sit alongside kie-ai-router.', status: 'Open — proven but unpackaged' },
+  { id: 'idea-kie-update', kind: 'leaf', category: 'ideas', label: 'Update kie-ai-router for ComfyUI', desc: 'ComfyUI is now proven in production twice — this makes the update more urgent, not just theoretical. Once formalized, ComfyUI should become the default for anything not deadline-critical, with Magnific/Higgsfield/kie.ai as overflow — inverting the current policy.', status: 'Open' },
+  { id: 'idea-princess-vo', kind: 'leaf', category: 'ideas', label: 'Princess of Chene Street: VO/music', desc: 'CapCut route resolved as a dead end — finishing goes through Resolve, PGC PowerGrade now ready to apply. Still open: where voiceover and music slot into the pipeline.', status: 'Open' },
+  { id: 'idea-xgrowth-fix', kind: 'leaf', category: 'ideas', label: 'Fix the X Growth Tracker automation', desc: 'The daily scheduled task has failed silently since Aug 10 — 4 manual patches so far (Aug 14, 16, 19), root cause still unconfirmed. Leading theory: a silent approval-gate blocking the unattended run. Needs a real investigation, not a fifth manual patch.', status: 'Open — recurring pain point' },
+  { id: 'idea-gpu-sku', kind: 'leaf', category: 'ideas', label: 'Confirm laptop vs desktop RTX 3080', desc: 'Desktop RTX 3080s only ship in 10GB/12GB — only the laptop/mobile SKU comes in 16GB. The entire local ComfyUI plan\'s quant sizing assumes 16GB, so this is the single highest-priority question before building any local-plan workflow.', status: 'Open — blocks local build' },
+  { id: 'idea-ltx-sage-bench', kind: 'leaf', category: 'ideas', label: 'Settle LTX-2.5 / SageAttention conflicts with a real benchmark', desc: 'Two independent research passes disagree on whether LTX-2.5 fits in 16GB via GGUF quants, and on SageAttention\'s actual Ampere speedup (~25-40% vs ~10-15%). Neither source ran the benchmark themselves — needs an actual on-machine timing test, not more research.', status: 'Open' },
+  { id: 'idea-sfx-methodology', kind: 'leaf', category: 'ideas', label: 'Add an SFX/audio-gen rate to the energy methodology', desc: 'No Wh assumption exists yet for audio generation (Magnific SFX, ACE-Step, Stable Audio) — generations are logged but excluded from the energy total. Worth adding if audio tools get regular use.', status: 'Open — minor' }
 ];
 
 const links = [
@@ -417,6 +433,7 @@ const links = [
   { source: 'cat-skills', target: 'skill-setup' },
   { source: 'cat-skills', target: 'skill-kie' },
   { source: 'cat-skills', target: 'skill-session' },
+  { source: 'cat-skills', target: 'skill-ograf' },
 
   { source: 'cat-automations', target: 'auto-morning' },
   { source: 'cat-automations', target: 'auto-dashboard' },
@@ -434,12 +451,16 @@ const links = [
   { source: 'cat-projects', target: 'proj-pipelines' },
   { source: 'cat-projects', target: 'proj-rd' },
   { source: 'cat-projects', target: 'proj-ops' },
+  { source: 'cat-projects', target: 'proj-motiongfx' },
 
   { source: 'proj-clients', target: 'proj-velveeta' },
   { source: 'proj-clients', target: 'proj-oiglass' },
 
   { source: 'proj-personal', target: 'proj-princess' },
   { source: 'proj-personal', target: 'proj-backlot' },
+  { source: 'proj-personal', target: 'proj-atl' },
+  { source: 'proj-personal', target: 'proj-dawnridge' },
+  { source: 'proj-personal', target: 'proj-goblin' },
   { source: 'proj-personal', target: 'proj-longform' },
   { source: 'proj-personal', target: 'proj-colortest' },
 
@@ -453,14 +474,24 @@ const links = [
   { source: 'proj-ops', target: 'proj-comfyui' },
   { source: 'proj-ops', target: 'proj-ghpages' },
 
+  { source: 'proj-motiongfx', target: 'proj-oistudios' },
+  { source: 'proj-motiongfx', target: 'proj-kowalski' },
+  { source: 'proj-motiongfx', target: 'proj-copperskillet' },
+  { source: 'proj-motiongfx', target: 'proj-statcards' },
+
   { source: 'cat-ideas', target: 'idea-skills-pending' },
   { source: 'cat-ideas', target: 'idea-budget' },
   { source: 'cat-ideas', target: 'idea-ae-trust' },
   { source: 'cat-ideas', target: 'idea-doctorplus-restore' },
   { source: 'cat-ideas', target: 'idea-comfyui-skill' },
   { source: 'cat-ideas', target: 'idea-kie-update' },
-  { source: 'cat-ideas', target: 'idea-princess-vo' }
+  { source: 'cat-ideas', target: 'idea-princess-vo' },
+  { source: 'cat-ideas', target: 'idea-xgrowth-fix' },
+  { source: 'cat-ideas', target: 'idea-gpu-sku' },
+  { source: 'cat-ideas', target: 'idea-ltx-sage-bench' },
+  { source: 'cat-ideas', target: 'idea-sfx-methodology' }
 ];
+
 
 // ---- Layout constants ----
 function radiusFor(d) {
